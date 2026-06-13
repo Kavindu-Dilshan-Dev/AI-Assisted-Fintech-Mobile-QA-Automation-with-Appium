@@ -1,0 +1,29 @@
+{
+  "_comment": "Synthetic beneficiaries for transfer scenarios. Fake names only, no real PII. Account numbers are synthetic and stored ALREADY MASKED (last 4 kept). The masked* fields mirror the model display getters; full account numbers are intentionally absent.",
+  "beneficiaries": [
+    {
+      "name": "Ada Testwell",
+      "nickname": "Ada (savings)",
+      "bankName": "Sample Test Bank",
+      "maskedAccountNumber": "****7421",
+      "maskedIban": "GB00 TEST **** **** **** 7421",
+      "currency": "USD"
+    },
+    {
+      "name": "Grace Mockton",
+      "nickname": "Grace (rent)",
+      "bankName": "Sandbox Credit Union",
+      "maskedAccountNumber": "****5098",
+      "maskedIban": "GB00 TEST **** **** **** 5098",
+      "currency": "USD"
+    },
+    {
+      "name": "Linus Faux",
+      "nickname": "Linus (utilities)",
+      "bankName": "Demo National Bank",
+      "maskedAccountNumber": "****3360",
+      "maskedIban": "GB00 TEST **** **** **** 3360",
+      "currency": "EUR"
+    }
+  ]
+}

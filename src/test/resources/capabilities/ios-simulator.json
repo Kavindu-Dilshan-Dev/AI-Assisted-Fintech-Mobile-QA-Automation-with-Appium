@@ -1,0 +1,17 @@
+{
+  "_comment": "XCUITest capability template for a local iOS Simulator. Synthetic app placeholders only. No secrets. Override via config.properties / system properties / env.",
+  "platformName": "iOS",
+  "appium:automationName": "XCUITest",
+  "appium:deviceName": "iPhone 15",
+  "appium:platformVersion": "17.5",
+  "appium:bundleId": "com.fintech.wallet.sample",
+  "appium:newCommandTimeout": 120,
+  "appium:autoAcceptAlerts": false,
+  "appium:noReset": false,
+  "appium:fullReset": false,
+  "appium:connectHardwareKeyboard": false,
+  "_biometric_comment": "Face ID enrollment is driven at runtime by BiometricHelper via 'mobile: enrollBiometric' / 'mobile: sendBiometricMatch'. allowTouchIdEnroll keeps the simulator biometric-friendly.",
+  "appium:allowTouchIdEnroll": true,
+  "appium:wdaLaunchTimeout": 120000,
+  "appium:wdaConnectionTimeout": 120000
+}

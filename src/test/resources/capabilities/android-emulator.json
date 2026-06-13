@@ -1,0 +1,19 @@
+{
+  "_comment": "UiAutomator2 capability template for a local Android emulator. Synthetic app placeholders only. No secrets. Override via config.properties / system properties / env.",
+  "platformName": "Android",
+  "appium:automationName": "UiAutomator2",
+  "appium:deviceName": "Android Emulator",
+  "appium:platformVersion": "14",
+  "appium:appPackage": "com.fintech.wallet.sample",
+  "appium:appActivity": "com.fintech.wallet.sample.MainActivity",
+  "appium:newCommandTimeout": 120,
+  "appium:autoGrantPermissions": true,
+  "appium:noReset": false,
+  "appium:fullReset": false,
+  "appium:ensureWebviewsHavePages": true,
+  "appium:nativeWebScreenshot": true,
+  "appium:enableMultiWindows": true,
+  "_biometric_comment": "Emulator fingerprint enrollment is driven at runtime by BiometricHelper via 'mobile: fingerprint'. The flags below keep the AVD biometric-friendly.",
+  "appium:skipDeviceInitialization": false,
+  "appium:disableWindowAnimation": true
+}

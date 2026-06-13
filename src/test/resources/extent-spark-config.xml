@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Spark reporter document configuration for the grasshopper Extent adapter.
+    Referenced from extent.properties (extent.reporter.spark.config).
+    Controls only presentation/branding of the single Spark HTML report.
+-->
+<extentreports>
+    <configuration>
+        <theme>standard</theme>
+        <encoding>UTF-8</encoding>
+        <documentTitle>Fintech Wallet QA - Extent Report</documentTitle>
+        <reportName>Synthetic Fintech Wallet - Mobile Automation</reportName>
+        <timeStampFormat>MMM dd, yyyy HH:mm:ss</timeStampFormat>
+    </configuration>
+</extentreports>

@@ -1,0 +1,8 @@
+{
+  "_comment": "Externalized Android locators for the Login page, loaded by LocatorRepository.get(\"login\", key). Pages primarily use @AndroidFindBy annotations; this file is the externalization escape hatch for dynamic/overridable locators. Values are UiAutomator2 selector strings (resource-id / accessibility-id).",
+  "usernameField": "com.fintech.wallet.sample:id/input_username",
+  "passwordField": "com.fintech.wallet.sample:id/input_password",
+  "loginButton": "com.fintech.wallet.sample:id/btn_login",
+  "otpField": "com.fintech.wallet.sample:id/input_otp",
+  "biometricPrompt": "com.fintech.wallet.sample:id/biometric_prompt"
+}

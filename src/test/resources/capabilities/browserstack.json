@@ -1,0 +1,21 @@
+{
+  "_comment": "BrowserStack App Automate capability template. NO secrets in this file. The access key is injected at runtime from the DEVICE_FARM_TOKEN environment variable; the ${DEVICE_FARM_TOKEN} / ${BROWSERSTACK_USERNAME} tokens below are placeholders documented in README and resolved by the framework, never stored literally.",
+  "platformName": "Android",
+  "appium:automationName": "UiAutomator2",
+  "appium:deviceName": "Google Pixel 8",
+  "appium:platformVersion": "14.0",
+  "_app_comment": "Upload your synthetic build to BrowserStack and reference the resulting bs://<hashed-app-id>. Placeholder only.",
+  "appium:app": "bs://SYNTHETIC_PLACEHOLDER_APP_ID",
+  "bstack:options": {
+    "_credentials_comment": "userName and accessKey are placeholders. They are populated from env vars BROWSERSTACK_USERNAME and DEVICE_FARM_TOKEN at runtime. Do NOT commit real values.",
+    "userName": "${BROWSERSTACK_USERNAME}",
+    "accessKey": "${DEVICE_FARM_TOKEN}",
+    "projectName": "fintech-mobile-qa",
+    "buildName": "fintech-wallet-regression",
+    "sessionName": "appium-cucumber-suite",
+    "debug": true,
+    "networkLogs": true,
+    "appiumVersion": "2.11.0",
+    "_biometric_comment": "Biometric injection is driven at runtime by BiometricHelper. Real-device biometric support varies by farm capability."
+  }
+}

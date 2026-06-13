@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    logback-test.xml  -  test-scope logging configuration.
+
+    Console-only, INFO root. The pattern deliberately logs ONLY the
+    formatted message; the framework is responsible for masking any
+    sensitive data (PAN/CVV/OTP/account/token) via MaskingUtil BEFORE
+    it is handed to slf4j. No MDC fields that could leak credentials
+    are emitted here.
+-->
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- time | level | abbreviated logger | message -->
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- Quieten noisy third-party loggers. -->
+    <logger name="org.openqa.selenium" level="WARN"/>
+    <logger name="io.appium" level="INFO"/>
+    <logger name="io.netty" level="WARN"/>
+    <logger name="org.asynchttpclient" level="WARN"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

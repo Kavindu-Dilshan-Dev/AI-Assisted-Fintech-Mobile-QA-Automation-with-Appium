@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.fintech.qa</groupId>
+    <artifactId>fintech-mobile-qa</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>fintech-mobile-qa</name>
+    <description>
+        Synthetic fintech wallet mobile QA automation framework
+        (Appium + Cucumber + JUnit Platform). No real PII/PAN; secrets only via env.
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
+
+        <!-- Pinned dependency versions -->
+        <appium.java-client.version>9.3.0</appium.java-client.version>
+        <cucumber.version>7.20.1</cucumber.version>
+        <junit.platform.suite.version>1.11.3</junit.platform.suite.version>
+        <junit.jupiter.version>5.11.3</junit.jupiter.version>
+        <extentreports.version>5.1.2</extentreports.version>
+        <extentreports.adapter.version>1.14.0</extentreports.adapter.version>
+        <jackson.version>2.18.1</jackson.version>
+        <slf4j.version>2.0.16</slf4j.version>
+        <logback.version>1.5.12</logback.version>
+        <commons.lang3.version>3.17.0</commons.lang3.version>
+        <assertj.version>3.26.3</assertj.version>
+
+        <!-- Pinned plugin versions -->
+        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+        <maven.surefire.plugin.version>3.5.1</maven.surefire.plugin.version>
+    </properties>
+
+    <dependencies>
+        <!--
+            Appium java-client 9.x brings Selenium 4 transitively.
+            Selenium is intentionally NOT declared explicitly.
+            Compile scope: page objects / components live in src/main/java.
+        -->
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.java-client.version}</version>
+        </dependency>
+
+        <!--
+            Logging facade: slf4j-api is used everywhere in src/main and is the
+            ONLY logging dependency this framework forces on consumers of the
+            published jar. A library must never impose a logging *binding* on its
+            consumers, so logback-classic (the binding) is TEST scope: it backs
+            this project's own test run only and is not transitive / not packaged.
+            Consumers of the jar supply their own slf4j binding.
+        -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JSON (config / locators / test data / capabilities) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <!-- Utilities -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
+        </dependency>
+
+        <!-- Reporting: single Extent engine via grasshopper cucumber7 adapter -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>${extentreports.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>tech.grasshopper</groupId>
+            <artifactId>extentreports-cucumber7-adapter</artifactId>
+            <version>${extentreports.adapter.version}</version>
+        </dependency>
+
+        <!-- ===================== TEST SCOPE ===================== -->
+
+        <!--
+            Cucumber: glue + JUnit Platform engine.
+            cucumber-java is PROVIDED scope: the main-source reporting facade
+            ExtentReportManager references the grasshopper ExtentCucumberAdapter,
+            whose supertypes expose io.cucumber.plugin types (ConcurrentEventListener)
+            that must be resolvable on the main *compile* classpath. PROVIDED keeps
+            it on the compile classpath while making it non-transitive and unpackaged,
+            so the published jar does not impose a Cucumber version on consumers —
+            consumers writing Cucumber tests already supply cucumber-java themselves.
+            The grasshopper adapter (compile scope, above) does not bring a cucumber
+            dependency, so the host/consumer must provide it.
+        -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JUnit Platform Suite (drives the Cucumber runner) -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <version>${junit.platform.suite.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JUnit Jupiter (aggregator: api + params + engine) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- AssertJ for fluent step assertions -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                    <!--
+                        Run the JUnit Platform Suite runner only.
+                        Cucumber scenarios are discovered by the cucumber engine
+                        (see src/test/resources/junit-platform.properties).
+                    -->
+                    <includes>
+                        <include>**/CucumberTestRunner.java</include>
+                    </includes>
+                    <!-- Forward platform selection (e.g. -Dplatform=ios) to the JVM. -->
+                    <systemPropertyVariables>
+                        <platform>${platform}</platform>
+                    </systemPropertyVariables>
+                    <!-- Do not fail the build merely because no tests were physically present. -->
+                    <failIfNoTests>false</failIfNoTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Default platform; override on the command line with -Dplatform=ios -->
+    <profiles>
+        <profile>
+            <id>default-platform</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>!platform</name>
+                </property>
+            </activation>
+            <properties>
+                <platform>android</platform>
+            </properties>
+        </profile>
+    </profiles>
+</project>

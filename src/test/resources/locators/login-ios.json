@@ -1,0 +1,8 @@
+{
+  "_comment": "Externalized iOS locators for the Login page, loaded by LocatorRepository.get(\"login\", key). Pages primarily use @iOSXCUITFindBy annotations; this file is the externalization escape hatch for dynamic/overridable locators. Values are XCUITest accessibility identifiers.",
+  "usernameField": "login-username-field",
+  "passwordField": "login-password-field",
+  "loginButton": "login-submit-button",
+  "otpField": "login-otp-field",
+  "biometricPrompt": "login-biometric-prompt"
+}
