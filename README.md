@@ -18,6 +18,18 @@ The framework is fintech-hardened by design:
 
 ---
 
+## Architecture
+
+The diagram below shows the full stack — from the Cucumber feature specs and
+step definitions, down through the page objects and `BasePage` (the only class
+allowed to call `driver.findElement`), the core engine, the Appium Java client,
+and the Appium server, to the devices / targets under test — plus the build &
+execution flow and the output artifacts.
+
+![Framework architecture](docs/architecture/framework-architecture.png)
+
+---
+
 ## Prerequisites
 
 | Tool | Version / Notes |
